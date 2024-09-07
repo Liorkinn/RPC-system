@@ -26,7 +26,7 @@ void changePassword::on_button_setPassword_clicked()
         return;
     }
 
-    bool success = dbworker->changeUserPassword(getUserId(), oldPassword, newPassword); // Замените 1 на id нужного пользователя
+    bool success = dbworker->changeUserPassword(getUserId(), oldPassword, newPassword);
     if (success) {
         QMessageBox::information(0, "Изменение пароля", "Пароль успешно изменен.");
     } else {
