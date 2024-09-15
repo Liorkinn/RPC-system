@@ -10,7 +10,7 @@ PatientPanel::PatientPanel(Dbworker *dbworker, QWidget *parent) :
     dbworker(dbworker)
 {
     ui->setupUi(this);
-    this->setFixedSize(439, 287);
+    this->setFixedSize(439, 240);
 }
 
 PatientPanel::~PatientPanel()
@@ -28,7 +28,7 @@ void PatientPanel::setUserData(const int& p_userID, const QString &p_name, const
 
     QString textInitialUser = QString("%1 %2 %3").arg(name).arg(surname).arg(patronymic);
     QString textAge = QString("%1 %2").arg("Возраст: ").arg(age);
-    QString textTelephone = QString("%1 %2").arg("Телефон").arg(telephone);
+    QString textTelephone = QString("%1 %2").arg("Телефон: ").arg(telephone);
 
     if (textInitialUser.isEmpty() || textAge.isEmpty() || textTelephone.isEmpty()) {
         return;

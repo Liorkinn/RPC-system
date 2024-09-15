@@ -263,7 +263,171 @@ QString Dbworker::getPicturePath(QString computer_name)
     return pathPicture;
 }
 
+QStringList Dbworker::getComponentTypes()
+{
+    QSqlQuery query(m_db);
+    QStringList listTypeComponents = QStringList();
 
+    QString command = QString("SELECT name FROM components;");
+
+    if (!query.exec(command)) {
+        qDebug() << "Error: query failed";
+        qDebug() << query.lastError().text();
+        return QStringList();
+    } else {
+        while (query.next()) {
+            listTypeComponents.append(query.value(0).toString());
+        }
+    }
+    return listTypeComponents;
+}
+
+bool Dbworker::addComponent(int component_id, QString component_name, QString description)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("INSERT INTO public.component_options (component_id, option_name, option_description) "
+                  "VALUES (:component_id, :option_name, :option_description)");
+
+    query.bindValue(":component_id", component_id);
+    query.bindValue(":option_name", component_name);
+    query.bindValue(":option_description", description);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to add component:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool Dbworker::addComputerName(QString computer_name, QString description, QString image_path)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("INSERT INTO public.computers (name, description, image_path) "
+                  "VALUES (:computer_name, :description, :image_path)");
+
+    query.bindValue(":computer_name", computer_name);
+    query.bindValue(":description", description);
+    query.bindValue(":image_path", image_path);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to add computer name:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+QStringList Dbworker::getComputerName()
+{
+    QSqlQuery query(m_db);
+    QStringList listComputers = QStringList();
+
+    QString command = QString("SELECT name FROM computers;");
+
+    if (!query.exec(command)) {
+        qDebug() << "Error: query failed";
+        qDebug() << query.lastError().text();
+        return QStringList();
+    } else {
+        while (query.next()) {
+            listComputers.append(query.value(0).toString());
+        }
+    }
+    return listComputers;
+}
+
+bool Dbworker::addConfiguration(int computer_id, int component_option_id)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("INSERT INTO public.computer_component_options (computer_id, component_option_id) "
+                  "VALUES (:computer_id, :component_option_id)");
+
+    query.bindValue(":computer_id", computer_id);
+    query.bindValue(":component_option_id", component_option_id);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to add configuration computer:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool Dbworker::deleteComputerComponentOptionsByComputerId(int computer_id)
+{
+    QSqlQuery query(m_db);
+
+    query.prepare("DELETE FROM Computer_Component_Options WHERE computer_id = :computer_id");
+    query.bindValue(":computer_id", computer_id);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to delete configuration computer:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+bool Dbworker::isAvailableComputerConfiguration(QString computer_id)
+{
+    QSqlQuery query(m_db);
+    QStringList id = QStringList();
+
+    QString command = QString("SELECT id FROM computer_component_options WHERE computer_id = '%1';").arg(computer_id);
+
+    if (!query.exec(command)) {
+        qDebug() << "Error: query failed";
+        qDebug() << query.lastError().text();
+        return bool();
+    } else {
+        while (query.next()) {
+            id.append(query.value(0).toString());
+        }
+    }
+
+    if (!id.isEmpty()) {
+        return false;
+    }
+    return true;
+}
+
+int Dbworker::getComputerId(QString computer_name)
+{
+    QSqlQuery query(m_db);
+    int id = int();
+
+    QString command = QString("SELECT id FROM computers WHERE name = '%1';").arg(computer_name);
+
+    if (!query.exec(command)) {
+        qDebug() << "Error: query failed";
+        qDebug() << query.lastError().text();
+        return int();
+    } else {
+        while (query.next()) {
+            id = query.value(0).toInt();
+        }
+    }
+    return id;
+}
+
+int Dbworker::getComponentId(QString option_name)
+{
+    QSqlQuery query(m_db);
+    int id = int();
+
+    QString command = QString("SELECT id FROM component_options WHERE option_name = '%1';").arg(option_name);
+
+    if (!query.exec(command)) {
+        qDebug() << "Error: query failed";
+        qDebug() << query.lastError().text();
+        return int();
+    } else {
+        while (query.next()) {
+            id = query.value(0).toInt();
+        }
+    }
+    return id;
+}
 
 
 

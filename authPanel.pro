@@ -36,28 +36,40 @@ INCLUDEPATH += $${DIR_MODULES}
 SOURCES += \
     src/apps/authPanel/main.cpp \
     src/apps/authPanel/mainwindow.cpp \
+    src/apps/doctorPanel/addcomponents.cpp \
+    src/apps/doctorPanel/addcomputername.cpp \
+    src/apps/doctorPanel/addconfiguration.cpp \
     src/apps/doctorPanel/doctorpanel.cpp \
     src/apps/pacientPanel/changepassword.cpp \
     src/apps/pacientPanel/patientpanel.cpp \
     src/apps/pacientPanel/picturedialog.cpp \
     src/apps/pacientPanel/selectcomputer.cpp \
+    src/apps/doctorPanel/registerpatient.cpp \
     src/modules/module_database/dbworker.cpp
 
 HEADERS += \
     src/apps/authPanel/mainwindow.h \
+    src/apps/doctorPanel/addcomponents.h \
+    src/apps/doctorPanel/addcomputername.h \
+    src/apps/doctorPanel/addconfiguration.h \
     src/apps/doctorPanel/doctorpanel.h \
     src/apps/pacientPanel/changepassword.h \
     src/apps/pacientPanel/patientpanel.h \
     src/apps/pacientPanel/picturedialog.h \
     src/apps/pacientPanel/selectcomputer.h \
+    src/apps/doctorPanel/registerpatient.h \
     src/modules/module_database/dbworker.h
 
 FORMS += \
     src/apps/authPanel/mainwindow.ui \
+    src/apps/doctorPanel/addcomponents.ui \
+    src/apps/doctorPanel/addcomputername.ui \
+    src/apps/doctorPanel/addconfiguration.ui \
     src/apps/doctorPanel/doctorpanel.ui \
     src/apps/pacientPanel/changepassword.ui \
     src/apps/pacientPanel/patientpanel.ui \
     src/apps/pacientPanel/picturedialog.ui \
+    src/apps/doctorPanel/registerpatient.ui \
     src/apps/pacientPanel/selectcomputer.ui
 
 INCLUDEPATH += $${DIR_MODULES}/module_database

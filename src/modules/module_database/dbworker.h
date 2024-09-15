@@ -57,13 +57,21 @@ public:
     QVariantList getComponents                  (QString component_name);
     QString getDescriptionComponent             (QString component_name);
     QStringList getRecommendedComputers         (QString ram, QString gpu, QString cpu, QString storage, QString block_power);
-    QString getPicturePath(QString computer_name);
+    QString getPicturePath                      (QString computer_name);
+    QStringList getComponentTypes               ();
+    bool addComponent                           (int component_id, QString component_name, QString description);
+    bool addComputerName                        (QString computer_name, QString description, QString image_path);
+    QStringList getComputerName                 ();
+    bool addConfiguration                       (int computer_id, int component_option_id);
+    bool isAvailableComputerConfiguration       (QString computer_id);
+    bool deleteComputerComponentOptionsByComputerId (int computer_id);
+    int getComputerId                           (QString computer_name);
+    int getComponentId                          (QString option_name);
 
 /*  Функции
  * - m_db - объект для подключения и работы с БД.
  * - patientPanel - объект формы пациента.
  * - doctorPanel - объект формы доктора.
- * - regPanel - объект формы регистратуры.
 */
 private:
     QSqlDatabase m_db;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>480</width>
-    <height>223</height>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,20 +46,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QLabel" name="label_cabinet">
-          <property name="text">
-           <string>Кабинет</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_post">
-          <property name="text">
-           <string>Должность</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </item>
      </layout>
@@ -90,10 +76,38 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
+         <widget class="QPushButton" name="button_registrationUser">
+          <property name="text">
+           <string>Зарегистрировать пользователя</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="button_addComputerName">
+          <property name="text">
+           <string>Добавить имя компьютера</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="button_addComponents">
+          <property name="text">
+           <string>Добавить комплектующие</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="button_configureComputer">
+          <property name="text">
+           <string>Сконфигурировать ПК</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="button_changePassword">
           <property name="font">
            <font>
-            <pointsize>9</pointsize>
+            <pointsize>11</pointsize>
            </font>
           </property>
           <property name="text">

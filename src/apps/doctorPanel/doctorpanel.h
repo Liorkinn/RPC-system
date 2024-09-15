@@ -6,6 +6,10 @@
 #include <QMessageBox>
 
 #include "changepassword.h"
+#include "registerpatient.h"
+#include "addcomputername.h"
+#include "addcomponents.h"
+#include "addconfiguration.h"
 
 class Dbworker;
 
@@ -90,6 +94,14 @@ public:
 private slots:
     void on_button_changePassword_clicked();
 
+    void on_button_registrationUser_clicked();
+
+    void on_button_addComponents_clicked();
+
+    void on_button_configureComputer_clicked();
+
+    void on_button_addComputerName_clicked();
+
 signals:
     void closed();
 
@@ -106,6 +118,11 @@ private:
     Dbworker* dbworker;
     DoctorData doctorData;
     changePassword *changePwd;
+    RegisterPatient *registerPatient;
+    AddComponents *addComponents;
+    AddComputerName *addComputerName;
+    AddConfiguration *addConfiguration;
+
 };
 
 #endif // DOCTORPANEL_H

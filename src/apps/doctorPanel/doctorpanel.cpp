@@ -27,10 +27,8 @@ void DoctorPanel::setUserData(const int& p_userID, const QString &p_name, const 
     QString textInitialUser = QString("%1 %2 %3").arg(name).arg(surname).arg(patronymic);
     QString textAge = QString("%1 %2").arg("Возраст: ").arg(age);
     QString textTelephone = QString("%1 %2").arg("Телефон: ").arg(telephone);
-    QString textCabinetInformation = QString ("%1 %2 %3").arg("Кабинет: ").arg(cabinetNumber + " - ").arg(cabinetName);
-    QString textPostType = QString("%1 %2").arg("Должность: ").arg(postType);
 
-    if (textInitialUser.isEmpty() || textAge.isEmpty() || textTelephone.isEmpty() || textCabinetInformation.isEmpty() || textPostType.isEmpty()) {
+    if (textInitialUser.isEmpty() || textAge.isEmpty() || textTelephone.isEmpty()) {
         return;
     }
 
@@ -40,15 +38,11 @@ void DoctorPanel::setUserData(const int& p_userID, const QString &p_name, const 
     setPatronymic(p_patronymic);
     setAge(p_age);
     setTelephone(p_telephone);
-    setCabinetNumber(p_cabinetNumber);
-    setCabinetName(p_cabinetName);
-    setPostType(p_postType);
+
 
     ui->label_FIO->setText(textInitialUser);
     ui->label_age->setText(textAge);
     ui->label_telephone->setText(textTelephone);
-    ui->label_cabinet->setText(textCabinetInformation);
-    ui->label_post->setText(textPostType);
 }
 
 DoctorPanel::~DoctorPanel()
@@ -61,4 +55,32 @@ void DoctorPanel::on_button_changePassword_clicked()
     changePwd = new changePassword(getUserID(), dbworker);
     changePwd->setWindowTitle("Изменение пароля");
     changePwd->show();
+}
+
+void DoctorPanel::on_button_registrationUser_clicked()
+{
+    registerPatient = new RegisterPatient(dbworker);
+    registerPatient->setWindowTitle("Регистрация");
+    registerPatient->show();
+}
+
+void DoctorPanel::on_button_addComponents_clicked()
+{
+    addComponents = new AddComponents(dbworker);
+    addComponents->setWindowTitle("Добавление комплектующего");
+    addComponents->show();
+}
+
+void DoctorPanel::on_button_configureComputer_clicked()
+{
+    addConfiguration = new AddConfiguration(dbworker);
+    addConfiguration->setWindowTitle("Конфигурация ПК");
+    addConfiguration->show();
+}
+
+void DoctorPanel::on_button_addComputerName_clicked()
+{
+    addComputerName = new AddComputerName(dbworker);
+    addComputerName->setWindowTitle("Добавление имени ПК");
+    addComputerName->show();
 }
